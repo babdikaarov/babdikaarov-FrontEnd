@@ -1,0 +1,32 @@
+.grid_container {
+  display: grid;
+  grid-template:
+  "e e e"
+  "a b c"
+  "d d d"
+  ;
+  margin: 0 15px;
+  gap: 10px;
+}
+.contact_us{
+  grid-area: c; 
+  
+  text-align: end;
+}
+.socials{
+  grid-area: a; 
+}
+.news_letter{
+  display: flex;
+  grid-area: b; 
+  justify-content: center;
+}
+.news_letter div {
+  justify-self: center;
+}
+.terms{
+  grid-area: d; 
+  text-align: center;
+}
+
+
