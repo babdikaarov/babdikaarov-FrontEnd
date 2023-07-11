@@ -12,7 +12,7 @@ class Field {
     #myField;
 
     //maze scale
-    scale = 2;
+    scale;
 
     //controllers to access and if needed setup them
     up = 'w';
@@ -97,22 +97,30 @@ class Field {
         return false;
       };
   
-      choosingMazeScale() {
+    choosingMazeScale() {
         let regex = /^(10|[1-9])$/;
-        this.scale = prompt("Please choose a scale level of a maze range between 1 - 10 >> ");
+
+        console.log(`current scale ${this.scale}` )
+        this.scale = prompt("Please choose range between 1 - 10 >> ");
+
+        console.log(`scale adjusted to ${this.scale}` )
         if (!regex.test(this.scale)){
             this.scale = prompt("The scale level accepts a number, suggested range 1 - 10 >> ");
+
+            console.log(`scale adjusted to ${this.scale}` )
         }
-        return this.scale
     }
       
     generateField () {
-  
         if(typeof this.#myField !== 'undefined'){
             this.gamesPlayed++
         }
-
-        let rows = this.scale == 1 ? 3 : this.scale * 3;
+        if (!this.scale){
+            this.scale = 2
+        }
+        
+        let rows = this.scale * 3;
+        console.log("generating scale " + this.scale)
     
   
       // Populate the field
@@ -148,7 +156,6 @@ class Field {
   
       this.#myField = newField;
       
-      // .map(row => row.join(' ')).join('\n')
     }
   
     print() {
@@ -163,9 +170,11 @@ class Field {
         console.log(`controller settings: type "settings"`)
         console.log(`exit game: "exit" or "cntr + C"`)
         console.log(`to choose scale: "scale"`)
+        console.log('\n')
         console.log('='.repeat(20))
         console.log(`${this.gamesPlayed && 'played games: ' + this.gamesPlayed + '||' || ''}  won: ${this.won} || lost: ${this.lost} || maze scale: ${this.scale}`)
         console.log('='.repeat(20))
+        console.log('\n')
         for (let i = 0; i < this.#myField.length; i++) {
           console.log(this.#myField[i].join(''));
         }
@@ -181,23 +190,21 @@ class Field {
     }
 
     gameReset() {
-        this.generateField();
-        this.print();
+        this.#myField = undefined
         this.coursorX = undefined;
         this.coursorY = undefined;
         this.gamesPlayed = 0;
         this.won = 0;
         this.lost = 0;
+        
     }
-
+    // this method is a helper function for courserMove()
     controller(){
 
         let move = prompt('Move >> ')
         switch (move) {
             case 'scale':
-                this.choosingMazeScale();
-                this.gameReset();
-                return this.controller();
+                return 'scale';
             case 'exit':
                 this.exit = true;
                 break;
@@ -225,9 +232,8 @@ class Field {
         
     }
 
-    // scoreTracker()
 
-    coursorMove(){
+    gameFlow(){
         if(
             typeof this.coursorX === 'undefined' ||
             typeof this.coursorY === 'undefined' ||
@@ -248,22 +254,20 @@ class Field {
             //updating and marking the visited path
             case this.up:
                 this.coursorX--;
-                // this.updateScores()
-                // this.#myField[this.coursorX][this.coursorY] = this.#pathCharacter;
                 break;
             case this.right:
                 this.coursorY++;
-                // this.updateScores()
-                // this.#myField[this.coursorX][this.coursorY] = this.#pathCharacter;
                 break;
             case this.down:
                 this.coursorX++;
-                // this.updateScores()
-                // this.#myField[this.coursorX][this.coursorY] = this.#pathCharacter;
                 break;
             case this.left:
                 this.coursorY--;
                 break;
+            case 'scale':
+                this.choosingMazeScale();
+                this.gameReset();
+                break
             default:
                 break
             
@@ -280,6 +284,11 @@ class Field {
     }
     
     updateScores(){
+
+
+        if(this.#myField == undefined){
+            return true
+        }
 
         // Base cases for out-of-bounds cells
         if (this.coursorX < 0 || this.coursorX >= this.#myField.length || this.coursorY < 0 || this.coursorY >= this.#myField[0].length) {
@@ -312,7 +321,9 @@ class Field {
                 this.generateField()
             }
             this.print()
-            this.coursorMove()
+            this.gameFlow()
+            
+            console.log()
         } while (!this.exit)
     }
 
@@ -322,27 +333,3 @@ class Field {
   
   const testField = new Field();
   testField.playGame;
-// testField.constrolFlow();
-// //   testField.controller();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
-//   testField.print();
-//   testField.coursorMove();
