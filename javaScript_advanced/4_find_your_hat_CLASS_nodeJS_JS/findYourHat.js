@@ -331,5 +331,5 @@ class Field {
 
 }
   
-  const testField = new Field();
-  testField.playGame;
+  const testGame = new Field();
+  testGame.playGame;
