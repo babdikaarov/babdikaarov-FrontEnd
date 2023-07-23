@@ -2,11 +2,11 @@
   "name": "8_stubbing_spies_unit_test_sinon",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
-    "test": "mocha test/app_test.js && jest app.test.js",
-    "tm": "mocha test/app_test.js",
-    "tj": "jest app.test.js"
+    "test": "mocha test/**/*_test.js && jest --coverage ",
+    "tm": "mocha test/**/*_test.js",
+    "tj": "jest"
   },
   "jest": {
     "transform": {
@@ -18,9 +18,9 @@
   "devDependencies": {
     "@babel/preset-env": "^7.22.9",
     "@babel/register": "^7.22.5",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^29.6.1",
     "jest": "^29.6.1",
-    "mocha": "^10.2.0",
     "sinon": "^15.2.0"
   }
 }
