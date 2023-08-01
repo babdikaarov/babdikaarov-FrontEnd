@@ -1,18 +1,18 @@
 
 # Tasks
 
-1. [ ] Set Up Your Local Environment
-2. [ ] Set Up Version Control
-3. [ ] Create Static Components
-4. [ ] Implement Track Listing in The Component Tree
-5. [ ] Implement Playlists in The Component Tree
-6. [ ] Implement Adding Songs To a Custom Playlist
-7. [ ] Implement Removing Songs From a Custom Playlist
-8. [ ] Implement Playlist Renaming
-9. [ ] Implement Saving the Playlist to a User's Account
-10. [ ] Obtain a Spotify Access Token
-11. [ ] Implement Spotify Search Request
-12. [ ] Save a User's Playlist
+1. [X] Set Up Your Local Environment
+2. [X] Set Up Version Control  (used existed git repository)
+3. [X] Create Static Components
+4. [X] Implement Track Listing in The Component Tree
+5. [X] Implement Playlists in The Component Tree
+6. [X] Implement Adding Songs To a Custom Playlist
+7. [X] Implement Removing Songs From a Custom Playlist
+8. [X] Implement Playlist Renaming
+9. [X] Implement Saving the Playlist to a User's Account
+10. [X] Obtain a Spotify Access Token
+11. [X] Implement Spotify Search Request
+12. [X] Save a User's Playlist
 13. [ ] Testing and Debugging
 14. [ ] Review Your Project
 
