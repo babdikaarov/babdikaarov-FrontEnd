@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styles from "../styles/SpotifyLogInButton.module.css";
 import { authorizeUser } from "../modules/authorization";
 import { accessToken } from "../modules/acessToken";
-// import { startInterval, stopInterval } from '../modules/'
 
 const SpotifyLogInButton = ({ setlogIn }) => {
   const urlParams = new URLSearchParams(window.location.search);
