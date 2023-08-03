@@ -130,22 +130,3 @@ export default function Track({
     </div>
   );
 }
-
-// const handleAudio = () => {
-
-//   if (isPlaying) {
-//     if(urlCompare === songToDisplay.preview){
-//       pausePlayAudio();//current audio manipulation !pause
-//     } else {
-//       stopAudio();  new audio manipulation !play new audio
-//       playAudio(songToDisplay.preview);
-//     }
-//   } else {
-//     if(urlCompare === songToDisplay.preview){
-//       pausePlayAudio(); current audio manipulation !play
-//     } else {
-//       stopAudio();  new audio manipulation !play new audio
-//       playAudio(songToDisplay.preview);
-//     }
-//   }
-// };

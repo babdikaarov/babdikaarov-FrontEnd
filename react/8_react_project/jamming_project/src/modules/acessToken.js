@@ -1,4 +1,5 @@
 import { authorizeUser } from "./authorization";
+
 const clientId = "cea0b5c6c2554ba8b8e14a507f5cd041";
 const tokenEndpoint = "https://accounts.spotify.com/api/token";
 
