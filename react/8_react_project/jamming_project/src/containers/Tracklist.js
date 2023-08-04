@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "../styles/Tracklist.module.css";
 import Track from "./Track";
 import removeIcon from "../assets/icons/remove/remove";
@@ -45,17 +45,17 @@ export default function Tracklist({
     setListName(e.target.value);
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     setCurrentIcon(icons.icon2);
-  };
+  }, []);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setCurrentIcon(icons.icon1);
-  };
+  }, []);
 
-  const handleMouseDown = () => {
+  const handleMouseDown = useCallback(() => {
     setCurrentIcon(icons.icon3);
-  };
+  }, []);
 
   return (
     <section className={styles.section}>

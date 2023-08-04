@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import styles from "../styles/SearchBar.module.css";
 import icons from "../assets/icons/search/search";
 import { searchSpotify } from "../modules/spotifySearch";
@@ -17,17 +17,17 @@ export default function SearchBar({ setFetchedList }) {
         .catch((error) => console.error(error));
     }
   }
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     setCurrentIcon(icons.icon2);
-  };
+  }, []);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setCurrentIcon(icons.icon1);
-  };
+  }, []);
 
-  const handleMouseDown = () => {
+  const handleMouseDown = useCallback(() => {
     setCurrentIcon(icons.icon3);
-  };
+  }, []);
 
   return (
     <div className={styles.searchBar}>
