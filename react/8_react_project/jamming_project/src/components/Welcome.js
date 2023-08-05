@@ -6,12 +6,12 @@ export default function Welcome() {
   const figmaURL =
     "https://www.figma.com/file/mYHCNnNeeOzW2Qzr0tZYM8/Jamming?type=design&node-id=0%3A1&mode=design&t=FEr4OVTFRFkVKwlK-1";
 
-  const redirectToURL = (url) => () => {
-    window.location.href = url;
+  const redirectToURL = (url) => {
+    window.open(url, "_blank");
   };
   function redirectToDefaultMail() {
     const mailToLink = `mailto:${"babdikaarov@gmail.com"}`;
-    window.location.href = mailToLink;
+    window.open(mailToLink, "_blank");
   }
 
   return (
@@ -45,12 +45,11 @@ export default function Welcome() {
         </ul>
         <p>My website uses secure authorization PKCE to access Spotify API.</p>
       </div>
-      <div
-        className={styles.footer}
-        redirectToURL={redirectToURL}
-        redirectToDefaultMail={redirectToDefaultMail}
-      >
-        <ReferenceIcon />
+      <div className={styles.footer}>
+        <ReferenceIcon
+          redirectToURL={redirectToURL}
+          redirectToDefaultMail={redirectToDefaultMail}
+        />
       </div>
     </div>
   );
