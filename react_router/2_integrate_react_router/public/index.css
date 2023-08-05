@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-self: center;
   align-self: center;
-  max-width: 50rem;
+  max-width: 500px;
 }
 
 .text-context {
