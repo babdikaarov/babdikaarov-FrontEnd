@@ -1,15 +1,6 @@
 # React Router
 
-## TOPICS
-
-- Components Interacting
-- Hooks
-- React Programming Patterns
-- Intermediate React
-- Deploy a React Application With Netlify
-- React Router
-
-### What is React Router?
+## What is React Router?
 
 React Router is a library that provides navigational components for React developers to create Single-Page Applications (SPAs) with dynamic, client-side routing.
 

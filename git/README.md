@@ -1,5 +1,10 @@
 # Handy Git Operations
 
+```bash
+git log --pretty=format:"%h | %an | %ad | %s" --graph --date=short #log in a table
+
+```
+
 Git provides us with a vast number of different commands that are listed on the documentation which can be intimidating at first. We will break down a couple that are powerful for daily tasks.
 
 Introduction
@@ -18,7 +23,7 @@ In this diagram, a coworker asks the programmer if they can work on something el
 While working on a file, you find a small bug in a separate file from a previous commit that needs to be fixed before you continue.
 
 ``` git
-$ git stash
+git stash
 ```
 
 Running the command above will store your work temporarily for later use in a hidden directory.
@@ -28,7 +33,7 @@ At this point, you can switch branches and do work elsewhere.
 Once the bug is fixed, you want to retrieve the code you were working on previously, you can “pop” the work that was stored when you used git stash.
 
 ```git
-$ git stash pop
+git stash pop
 ```
 
 From here, you can continue your work and commit it when ready.
@@ -80,14 +85,14 @@ It’s important to note that although it seems like --amend is simply updating 
 However, if you want to keep the same commit message, you can simply add the flag --no-edit:
 
 ```git
-$ git commit --amend --no-edit
+git commit --amend --no-edit
 ```
 
 Git alias commands
 When grouping commands together, you can end up writing very long lines of Git commands in the terminal such as:
 
 ```git
-$ git log --pretty=format:"%h %s" --graph
+git log --pretty=format:"%h %s" --graph
 ```
 
 Fortunately, Git offers a helpful feature that can make your Git experience simpler, easier, and more familiar: aliases.
@@ -97,21 +102,21 @@ If you have a set of commands that you use regularly and want to save some time 
 Below are a couple of examples:
 
 ```git
-$ git config --global alias.co "checkout"
-$ git config --global alias.br "branch"
-$ git config --global alias.glop "log --pretty=format:"%h %s" --graph"
+git config --global alias.co "checkout"
+git config --global alias.br "branch"
+git config --global alias.glop "log --pretty=format:"%h %s" --graph"
 ```
 
 Once the aliases are configured, next time you want to check out to another branch you could type the command:
 
 ```git
-$ git co example_branch
+git co example_branch
 ```
 
 Instead of:
 
 ```git
-$ git checkout example_branch
+git checkout example_branch
 ```
 
 Using Git aliases can create a much more fluid and efficient workflow experience when using Git. By getting creative with your aliases, you’re able to wrap a sequence of Git commands into one in order to save time and effort.
