@@ -22,7 +22,7 @@ The flow when using git stash might look something like this:
 In this diagram, a coworker asks the programmer if they can work on something else while they have their current code open. Git stash allows their current code to be stashed as they finish the other update. Git stash pop puts the code changes back into the working directory.
 While working on a file, you find a small bug in a separate file from a previous commit that needs to be fixed before you continue.
 
-``` git
+``` bash
 git stash
 ```
 
@@ -32,7 +32,7 @@ At this point, you can switch branches and do work elsewhere.
 
 Once the bug is fixed, you want to retrieve the code you were working on previously, you can “pop” the work that was stored when you used git stash.
 
-```git
+```bash
 git stash pop
 ```
 
@@ -49,7 +49,7 @@ Git Log output shows recent commit history
 
 There are other ways you can use git log in order to view recorded changes. Here are a few examples:
 
-```git
+```bash
 git log --oneline 
 ```
 
@@ -57,7 +57,7 @@ shows the list of commits in one line format.
 
 ![Git Log online output shows recent commit history all in one line](git-log-oneline-2.png)
 
-```git
+```bash
 git log -S "keyword" 
 ```
 
@@ -65,7 +65,7 @@ displays a list of commits that contain the keyword in the message. In the scree
 
 ![In the screenshot, the output of `git log -S "Add"` finds a commit with "Add" in the message.](git-log-S.png)
 
-```git
+```bash
 git log --oneline --graph 
 ```
 
@@ -84,14 +84,14 @@ It’s important to note that although it seems like --amend is simply updating 
 
 However, if you want to keep the same commit message, you can simply add the flag --no-edit:
 
-```git
+```bash
 git commit --amend --no-edit
 ```
 
 Git alias commands
 When grouping commands together, you can end up writing very long lines of Git commands in the terminal such as:
 
-```git
+```bash
 git log --pretty=format:"%h %s" --graph
 ```
 
@@ -101,7 +101,7 @@ If you have a set of commands that you use regularly and want to save some time 
 
 Below are a couple of examples:
 
-```git
+```bash
 git config --global alias.co "checkout"
 git config --global alias.br "branch"
 git config --global alias.glop "log --pretty=format:"%h %s" --graph"
@@ -109,14 +109,20 @@ git config --global alias.glop "log --pretty=format:"%h %s" --graph"
 
 Once the aliases are configured, next time you want to check out to another branch you could type the command:
 
-```git
+```bash
 git co example_branch
 ```
 
 Instead of:
 
-```git
+```bash
 git checkout example_branch
 ```
 
 Using Git aliases can create a much more fluid and efficient workflow experience when using Git. By getting creative with your aliases, you’re able to wrap a sequence of Git commands into one in order to save time and effort.
+
+```bash
+#will stage and commit the history
+git commit -a -m "Your commit message here"
+
+```
