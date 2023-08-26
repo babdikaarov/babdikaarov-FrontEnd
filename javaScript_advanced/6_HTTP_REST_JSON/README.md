@@ -1,1 +1,0 @@
-# folders contain the articles about HTTP REST JSON from codecademy

@@ -1,0 +1,179 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  background: #dbd9d3;
+  margin: 0;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  background: white;
+  max-width: 100%;
+  margin: 0;
+}
+
+header ul {
+  display: flex;
+  justify-content: space-between;
+  min-width: 40%;
+  max-width: 50%;
+}
+
+header ul li {
+  list-style: none;
+}
+
+header ul li a {
+  text-decoration: none;
+}
+
+.blog:hover {
+  color: green;
+}
+
+#logo {
+  color: red;
+  text-decoration: none;
+}
+
+nav {
+  text-align: end;
+  background: #eaedd5;
+}
+
+/* HERO SECTION */
+.hero {
+  background: url('https://img.freepik.com/free-photo/bitcoin-top-laptop-flat-lay_23-2148285311.jpg?w=1060&t=st=1667066319~exp=1667066919~hmac=716b98f53064b56d19ee4148b28a7d753a6165b6d9068207d56766c04cdd47be');
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
+  border: 1px solid transparent;
+}
+
+.hero_circle {
+  position: relative;
+  left: -2%;
+  background: #f5d664;
+  border-radius: 50%;
+  width: 40%;
+  padding-top: 40%;
+  margin-top: 5%;
+  box-sizing: border-box;
+}
+
+.hero_circle div {
+  position: relative;
+  top: 20%;
+  left: 45%;
+}
+
+.hero_circle h1 {
+  font-size: 3.5rem;
+}
+
+.hero_circle p {
+  font-size: 2rem;
+}
+
+.button {
+  width: 40%;
+  height: 2.5em;
+  background: black;
+  color: white;
+}
+
+/* FOOTER */
+footer {
+  background: black;
+  color: white;
+  padding: 3%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-section {
+  flex-basis: 30%;
+}
+
+.footer-section h3 {
+  color: #f5d664;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.social-media {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social-media li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.social-media a {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.footer-bottom {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 760px) {
+  header ul {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  header ul {
+    display: none;
+  }
+
+  #logo {
+    text-align: center;
+  }
+
+  nav {
+    text-align: center;
+  }
+
+  .hero_circle div {
+    top: 10%;
+    left: 25%;
+  }
+
+  .hero_circle h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero_circle p {
+    font-size: 1.5rem;
+  }
+
+  .button {
+    width: 60%;
+    height: 2em;
+  }
+}

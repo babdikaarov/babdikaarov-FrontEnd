@@ -1,0 +1,20 @@
+.searchButton {
+    width: 3.125rem;
+    height: 3.125rem;
+    /* Reset style for a button */
+
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    /* Add any other reset properties you want */
+
+
+}
+
+@media screen and (min-width: 720px) and (max-width: 1024px) {}
+
+@media screen and (min-width: 460px) and (max-width: 720px) {}
+
+@media screen and (min-width: 320px) and (max-width: 460px) {}

@@ -1,0 +1,19 @@
+@import "https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap";
+body {
+  text-align: center;
+  font-family: Montserrat, sans-serif;
+}
+
+.sun {
+  width: 100px;
+  margin-bottom: 18px;
+}
+
+.vacationImg {
+  width: auto;
+  max-height: 800px;
+  margin: auto;
+  display: block;
+}
+
+/*# sourceMappingURL=index.c6ac959b.css.map */
