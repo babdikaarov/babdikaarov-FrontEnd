@@ -1,0 +1,250 @@
+# Introduction to Heaps
+
+Heaps are used to maintain a maximum or minimum value in a dataset. Our examples use numbers since this is a straight-forward value, but heaps have many practical applications.
+
+Imagine you have a demanding boss (hopefully this is theoretical!). They always want the most important thing done. Of course, once you finish the most important task, another one takes its place.
+
+You can manage this problem using a priority queue to ensure you’re always working on the most pressing assignment and heaps are commonly used to create a priority queue.
+
+Heaps tracking the maximum or minimum value are max-heaps or min-heaps. We will focus on min-heaps, but the concepts for a max-heap are nearly identical.
+
+Think of the min-heap as a binary tree with two qualities:
+
+The root is the minimum value of the dataset.
+Every child’s value is greater than or equal to its parent.
+These two properties are the defining characteristics of the min-heap. By maintaining these two properties, we can efficiently retrieve and update the minimum value.
+![Heap Example](./mdAssets/Heap%20Example.svg)
+
+## Heap Representations
+
+We can picture min-heaps as binary trees, where each node has at most two children. As we add elements to the heap, they’re added from left to right until we’ve filled the entire level.
+
+At the top, we’ve filled the level containing 12 and 20. The next addition comes as the left child of 12, starting a new level in the tree. We would continue filling this level from left to right until 20 had its right child filled.
+
+Conceptually, the tree representation is beneficial for understanding. Practically, we implement heaps in a sequential data structure like an array or list for efficiency.
+
+Notice how by filling the tree from left to right; we’re leaving no gaps in the array. The location of each child or parent derives from a formula using the index.
+
+- left child: (index *2) + 1
+- right child: (index* 2) + 2
+- parent: (index - 1) / 2 — not used on the root!
+![heap-representation](./mdAssets/heap-representation.svg)
+
+## Adding an Element: Heapify Up
+
+Sometimes you will add an element to the heap that violates the heap’s essential properties.
+
+We’re adding 3 as a left child of 11, which violates the min-heap property that children must be larger or equal to their parent.
+
+We need to restore the fundamental heap properties. This restoration is known as heapify or heapifying. We’re adding an element to the bottom of the tree and moving upwards, so we’re heapifying up.
+
+As long as we’ve violated the heap properties, we’ll swap the offending child with its parent until we restore the properties, or until there’s no parent left. If there is no parent left, that element becomes the new root of the tree.
+
+3 swaps with 11, but there’s still work to do because now 3 is a child of 5. One more swap and we’ve restored the heap properties. The parent value, 2, is lesser than the child, 3. We can see that 3‘s children 5 and 14 are also greater.
+
+![heapup](./mdAssets/heapup.gif)
+
+## Removing an Element: Heapify Down
+
+Maintaining a minimum value is no good if we can never retrieve it, so let’s explore how to remove the root node.
+
+In the diagram, you can see removing the top node itself would be messy: there would be two children orphaned! Instead, we’ll swap the root node, 2, with the bottom rightmost child: 20. The bottom rightmost child is simple to remove because it has no children.
+
+Unfortunately, we’ve violated the heap property. 20 is now the root node, and that’s not the minimum value in the heap. We’ll heapify down to restore the heap property.
+
+This process is similar to heapifying up, except we have two options (5 and 10) where we can make a swap. We’ll choose the lesser of the two values and swap 20 with 5. This is necessary for the heap property, if we had chosen to swap 20 with 10, then the minimum value would not be at the root. With 5 at the root, the root node is the minimum value in the heap again.
+
+Another swap is required because 20 is greater than its children, so we swap 20 with 11.
+
+Now 20 no longer has any children (it is a child of 11), and all other nodes in the heap only have parents with smaller values.
+
+Just like that, we’ve retrieved the minimum value, allocated a new minimum, and maintained the heap property!
+
+![heapdown](./mdAssets/heapdown.webp)
+
+## Introduction
+
+A heap data structure is a specialized tree data structure that satisfies the heap condition:
+
+In a max-heap, for any given element, its parent’s value is greater than or equal to its value.
+In a min-heap, for any given element, its parent’s value is less than or equal to its value.
+A heap data structure is commonly implemented as a binary tree. In this lesson, we’re going to implement a min-heap in JavaScript. Min-heaps efficiently keep track of the minimum value in a dataset, even as we add and remove elements.
+
+Heaps enable solutions for complex problems such as finding the shortest path (Dijkstra’s Algorithm) or efficiently sorting a dataset (heapsort).
+
+They’re an essential tool for confidently navigating some of the difficult questions posed in a technical interview.
+
+By understanding the operations of a heap, you will have made a valuable addition to your problem-solving toolkit.
+
+## MinHeap Class
+
+Our MinHeap class will store two pieces of information:
+
+An array of elements within the heap.
+A count of the elements within the heap.
+To make our lives easier, we’ll always keep one element at the beginning of the array with the value null. By doing this, we can simplify our coding by always referencing our minimum element at index 1 instead of 0 and our last element at index this.size instead of this.size - 1.
+
+```js
+const minHeap = new MinHeap();
+console.log(minHeap.heap);
+// [ null ]
+console.log(minHeap.size);
+// 0
+```
+
+## Bubble Up Part I
+
+Our MinHeap needs to satisfy two conditions:
+
+The element at index 1 is the minimum value in the entire list.
+Every child element in the list must be larger than its parent.
+Let’s define an .add() method which will allow us to add elements into the .heap array. We will also define .bubbleUp() which will do the work of maintaining the heap conditions as we add additional elements.
+
+## Parent and Child Elements
+
+Great work so far! Our MinHeap adds elements to the internal heap, keeps a running count, and has the beginnings of .bubbleUp().
+
+Before we dive into the logic for .bubbleUp(), let’s review how heaps track elements. We use an array for storing internal elements, but we’re modeling it on a binary tree, where every parent element has up to two child elements.
+
+Child and parent elements are determined by their relative indices within the internal heap. By doing some arithmetic on an element’s index, we can determine the indices for parent and child elements (if they exist).
+
+- Parent: (index / 2), rounded down
+- Left Child: index *2
+- Right Child: (index* 2) + 1
+These calculations are important for the efficiency of the heap, but they’re not necessary to memorize, so we have provided three helper functions: getParent(), getLeft(), and getRight() in MinHeap.js.
+
+These helpers take an index as the sole parameter and return the corresponding parent or child index.
+
+```js
+console.log(myHeap.heap) 
+// returns [null, 10, 13, 21, 61, 22, 23, 99]
+
+getParent(4); // returns (4 / 2) == 2
+
+getLeft(3);   // returns (3 * 2) == 6
+
+getRight(3);  // re
+```
+
+## Bubble Up Part II
+
+Now that we understand how to determine the relationship of elements with the internal heap, we’re ready to finish .bubbleUp().
+
+In a min-heap, we need to ensure that every child is greater in value than its parent. Let’s add an element to the following heap.
+
+```js
+console.log(minHeap.heap)
+// returns [null, 10, 13, 21, 61, 22, 23, 99]
+
+heap.add(12)
+```
+
+```txt
+( new_element )
+{ parent_element }
+[null, 10, 13, 21, {61}, 22, 23, 99, (12)]
+```
+
+Oh no! We’ve violated the min-heap condition because 12‘s parent, 61, is greater than its child, 12.
+
+To fix this, we will exchange the parent and the child elements.
+
+```
+before
+[null, 10, 13, 21, {61}, 22, 23, 99, (12)]
+SWAP 12 and 61
+after
+[null, 10, 13, 21, (12), 22, 23, 99, {61}]
+```
+
+12‘s parent is now 13 and it violates the min-heap condition. To fix this, we continue moving upwards swapping parent-child values.
+
+```
+before
+[null, 10, {13}, 21, (12), 22, 23, 99, 61]
+SWAP 12 and 13
+after
+[null, 10, (12), 21, {13}, 22, 23, 99, 61]
+```
+
+12‘s parent is now 10 and no longer violates the min-heap condition. We’ve restored the heap!
+
+```
+[null, {10}, (12), 21, 13, 22, 23, 99, 61]
+The child, 12, is greater than the parent, 10!
+```
+
+Let’s recap our strategy for .bubbleUp():
+
+```
+Set the current element index to be the last index of heap
+  While current element is valid and its value is less than its parent's value
+   Swap the indexes
+   Update the current element index to be its parent index
+```
+
+## Removing the Min
+
+Min-heaps would be useless if we couldn’t retrieve the minimum value. We’ve gone through a lot of work to maintain that value because we’re going to need it!
+
+Our goal is to efficiently remove the minimum element from the heap. You’ll recall that we always locate the minimum element at index 1 (a placeholder element occupies index 0).
+
+Our internal heap mirrors a binary tree. There’s a delicate balance of parent and child relationships we would ruin by directly removing the minimum.
+
+```js
+console.log(minHeap.heap)
+// [null, 10, 21, 13, 61, 22, 23, 99]
+minHeap.popMin()
+// 10
+// [null, ???, 21, 13, 61, 22, 23, 99]
+```
+
+We need to remove an element that has no children, in this case, the last element. If we swap the minimum with the last element, we can easily remove the minimum from the end of the list.
+
+```
+[None, (10), 21, 13, 61, 22, 23, {99}]
+minHeap.popMin()
+SWAP minimum with last
+[None, {99}, 21, 13, 61, 22, 23, (10)]
+remove minimum
+[None, 99, 21, 13, 61, 22, 23]
+10
+```
+
+Terrific! We removed the minimum element with minimal disruption. Unfortunately, our heap is out of shape again with 99 sitting where the minimum element should be. We will solve this in exercises to come…
+
+## Heapify I
+
+We’ve retrieved the minimum element but left our MinHeap in disarray. There’s no reason to get discouraged; we’ve handled this type of problem before, and we can get our MinHeap back in shape!
+
+We’ll define a method, .heapify(), which performs a similar role to .bubbleUp(), except now we’re moving down the tree instead of up. The current element is a parent that can have either a left child or two children, but not just a right child.
+
+We have written a helper method, .canSwap(), to return true if swapping can occur for either child and false otherwise:
+
+```js
+canSwap(current, leftChild, rightChild) {
+  // Check that one of the possible swap conditions exists
+  return (this.exists(leftChild) && this.heap[current] > this.heap[leftChild]
+  || this.exists(rightChild) && this.heap[current] > this.heap[rightChild]
+    );
+  }
+```
+
+To maintain the min-heap condition, the parent value has to be less than both its child values. To see if a swap is necessary, starting with the left child, we first check that the child exists and then whether the min-heap condition is broken, i.e. the current element has a value greater than that child’s value. If the left child does not break the min-heap condition, the same check is performed on the right child.
+
+## Heapify II
+
+In .bubbleUp(), we were always comparing our element with its parent. In .heapify(), we have potentially two options: the left child and the right child.
+
+Which should we choose? We’ll use an example to think it through. Imagine we have a heap with four elements:
+
+```js
+console.log(minHeap.heap)
+// [null, 21, 36, 58, 42]
+minHeap.popMin()
+// 21
+// [null, 42, 36, 58]
+// Should we swap 42 with 36 or 58?
+```
+
+We want to swap with the smaller of the two children, otherwise, we wouldn’t maintain our heap condition!
