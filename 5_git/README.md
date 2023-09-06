@@ -126,3 +126,8 @@ Using Git aliases can create a much more fluid and efficient workflow experience
 git commit -a -m "Your commit message here"
 
 ```
+
+```bash
+# standart gitignor for nodejs
+curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/Node.gitignore
+```
