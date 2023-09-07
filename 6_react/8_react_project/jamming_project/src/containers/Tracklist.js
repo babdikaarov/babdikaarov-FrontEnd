@@ -9,6 +9,7 @@ export default function Tracklist({
   setCustomList,
   customList,
   setFetchedList,
+  logIn,
 }) {
   const [currentIcon, setCurrentIcon] = useState(icons.icon1);
   const [listName, setListName] = useState("My Playlist");
@@ -22,7 +23,9 @@ export default function Tracklist({
       );
     };
     if (buttonClicked) {
-      if (!customList.length) {
+      if (!logIn) {
+        alert("please log in first but before request access");
+      } else if (!customList.length) {
         alert("Sorry! Empty list can not be saved");
       } else {
         postCustomList();

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/Welcome.module.css";
 import ReferenceIcon from "../assets/icons/reference/ReferenceIcon";
 
-export default function Welcome() {
+export default function Welcome({ setWelcome }) {
   const figmaURL =
     "https://www.figma.com/file/mYHCNnNeeOzW2Qzr0tZYM8/Jamming?type=design&node-id=0%3A1&mode=design&t=FEr4OVTFRFkVKwlK-1";
 
@@ -16,6 +16,14 @@ export default function Welcome() {
 
   return (
     <div className={styles.div}>
+      <div className={styles.welcomeButtonContainer}>
+        <button
+          onClick={() => setWelcome(false)}
+          className={styles.welcomeButton}
+        >
+          Continue
+        </button>
+      </div>
       <div className={styles.text}>
         <h1>Hi there, I'm Beksultan!</h1>
         <p>Thanks for visiting my portfolio, where I showcase my skills:</p>
