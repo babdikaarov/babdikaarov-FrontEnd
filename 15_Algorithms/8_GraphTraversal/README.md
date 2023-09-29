@@ -13,6 +13,8 @@ On the other hand, a breadth-first graph search approach checks the values of al
 - Dijkstra’s Algorithm
 Dijkstra’s algorithm is a method for finding the shortest distance from a given point to every other point in a weighted graph. The algorithm works by keeping track of all the distances and updating the distances as it conducts a breadth-first search. A common application of this algorithm is to find the quickest route from one destination to another.
 
+[Cocept video](https://www.youtube.com/watch?v=swpIQgPoCWs)
+
 ## Graph Search Conceptual Introduction
 
 Using graphs to model complex networks is pretty swell, but one way that graphs can really come in handy is with graph search algorithms. You can use a graph search algorithm to traverse the entirety of a graph data structure in search of a specific vertex value.
@@ -29,6 +31,8 @@ In an upper bound scenario, we would be looking at every vertex and every edge. 
 
 ## Depth-First Search (DFS) Conceptual
 
+[DFS video](https://www.youtube.com/watch?v=0_ZzqX5bpyA)
+
 Imagine you’re in a car, on the road with your friend, “D.” D is on a mission to get to your destination by process of elimination. D won’t stop and ask for directions. D just sticks to a chosen path until you reach the end.
 
 At that point, if the end wasn’t actually your destination, D brings you back to the last point when there was an intersection and tries another path.
@@ -42,6 +46,8 @@ In order to accomplish this path-finding feat, DFS implementations use either a 
 In a stack implementation, the most recently added vertex is popped off the stack when the search has reached the end of the path. Meanwhile, in a recursive implementation, the DFS function is recursively called for each connected vertex.
 
 ## Breadth-First Search (BFS) Conceptual
+
+[BFS video](https://www.youtube.com/watch?v=WiasVg9M81I)
 
 You’re back in a car, but this time, your friend “B” is navigating. Unlike D, B is a bit hesitant about whether you’ve gone the right way and keeps checking in to see if you are on the best path. At each intersection, B tries out each possible route one by one, but only for a block in each direction to see if you’ve found your destination.
 
